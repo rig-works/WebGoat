@@ -78,14 +78,11 @@ public class HijackSessionAssignment extends AssignmentEndpoint {
     if (authentication.isAuthenticated()) {
       return success(this).build();
     }
-
-    return failed(this).build();
-  }
-
-  private void setCookie(HttpServletResponse response, String cookieValue) {
-    Cookie cookie = new Cookie(COOKIE_NAME, cookieValue); #
+private void setCookie(HttpServletResponse response, String cookieValue) {
+    Cookie cookie = new Cookie(COOKIE_NAME, cookieValue);
     cookie.setPath("/WebGoat");
     cookie.setSecure(true);
+    cookie.setHttpOnly(true);
     response.addCookie(cookie);
   }
 }
